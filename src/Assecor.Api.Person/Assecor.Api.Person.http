@@ -1,0 +1,6 @@
+@Assecor.Api.Person_HostAddress = http://localhost:5277
+
+GET {{Assecor.Api.Person_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

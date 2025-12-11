@@ -1,0 +1,30 @@
+<Solution>
+  <Folder Name="/.docker/">
+    <File Path=".docker/Dockerfile" />
+    <File Path=".docker/nuget.docker.config" />
+  </Folder>
+  <Folder Name="/docs/">
+    <File Path="docs/Architecture.md" />
+    <File Path="docs/HowtoRun.md" />
+    <File Path="docs/Overview.md" />
+    <File Path="docs/Requirements.md" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".dockerignore" />
+    <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="nuget.config" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Assecor.Api.Person/Assecor.Api.Person.csproj" />  
+    <Project Path="src/Assecor.Api.Application/Assecor.Api.Application.csproj" />
+    <Project Path="src/Assecor.Api.Domain/Assecor.Api.Domain.csproj" />
+    <Project Path="src/Assecor.Api.Infrastructure/Assecor.Api.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <File Path="tests/Directory.Build.props" />
+    <Project Path="tests/Assecor.Api.Person/Assecor.Api.Person.csproj" Id="69158111-0605-4e7d-ae3c-2c95f323d0f9" />
+  </Folder>
+</Solution>
