@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Assecor.Api.Infrastructure\Assecor.Api.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
