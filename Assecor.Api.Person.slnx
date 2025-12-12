@@ -1,6 +1,5 @@
 <Solution>
   <Folder Name="/.docker/">
-    <File Path=".docker/Dockerfile" />
     <File Path=".docker/nuget.docker.config" />
   </Folder>
   <Folder Name="/docs/">
@@ -16,6 +15,7 @@
     <File Path="Directory.Build.props" />
     <File Path="Directory.Packages.props" />
     <File Path="nuget.config" />
+    <File Path="src/Assecor.Api.Person/Properties/launchSettings.json" />
   </Folder>
   <Folder Name="/src/">
     <Project Path="src/Assecor.Api.Person/Assecor.Api.Person.csproj" />  
