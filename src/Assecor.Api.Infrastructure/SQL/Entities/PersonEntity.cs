@@ -35,7 +35,14 @@ public class PersonEntity
                 return colorResult.Error;
             }
 
-            return new Person(Id, firstName, lastName, addressResult.Value, colorResult.Value);
+            var person = Person.Create(Id, firstName, lastName, addressResult.Value, colorResult.Value);
+
+            if (person.IsFailure)
+            {
+                return person.Error;
+            }
+
+            return person.Value;
         }
         catch (Exception e)
         {

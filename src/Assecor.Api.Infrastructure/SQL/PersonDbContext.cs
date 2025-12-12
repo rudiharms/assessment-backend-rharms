@@ -21,6 +21,8 @@ public class PersonDbContext(DbContextOptions<PersonDbContext> options) : DbCont
                 entity.Property(static e => e.ZipCode).IsRequired().HasMaxLength(20);
                 entity.Property(static e => e.City).IsRequired().HasMaxLength(200);
                 entity.Property(static e => e.ColorId).IsRequired();
+
+                entity.HasIndex(static e => e.ColorId).IsUnique(false);
             }
         );
     }

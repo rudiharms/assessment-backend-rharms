@@ -3,10 +3,16 @@ using CSharpFunctionalExtensions;
 
 namespace Assecor.Api.Domain.Models;
 
-public class Address(string zipCode, string city)
+public class Address
 {
-    public string ZipCode { get; private set; } = zipCode;
-    public string City { get; private set; } = city;
+    private Address(string zipCode, string city)
+    {
+        ZipCode = zipCode;
+        City = city;
+    }
+
+    public string ZipCode { get; }
+    public string City { get; }
 
     public static Result<Address, Error> Create(string zipCode, string city)
     {

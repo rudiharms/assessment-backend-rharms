@@ -45,7 +45,14 @@ public class CsvPerson
                 return colorResult.Error;
             }
 
-            return new Person(id, firstName, lastName, addressResult.Value, colorResult.Value);
+            var person = Person.Create(id, firstName, lastName, addressResult.Value, colorResult.Value);
+
+            if (person.IsFailure)
+            {
+                return person.Error;
+            }
+
+            return person.Value;
         }
         catch (Exception e)
         {
