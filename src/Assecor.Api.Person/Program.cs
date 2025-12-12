@@ -1,12 +1,19 @@
+using System.Text.Json;
+using Assecor.Api.Application;
 using Assecor.Api.Infrastructure;
-using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(static options =>
+        {
+            options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+        }
+    );
+
 builder.Services.AddOpenApi();
 
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Assecor.Api.Application.Queries.GetPersonsQuery).Assembly));
+builder.Services.AddMediatR(static cfg => cfg.RegisterServicesFromAssembly(Application.Assembly));
 
 builder.Services.AddInfrastructure(builder.Configuration);
 
@@ -16,7 +23,7 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 
-    app.UseSwaggerUI(options =>
+    app.UseSwaggerUI(static options =>
         {
             options.SwaggerEndpoint("/openapi/v1.json", "v1");
         }

@@ -1,3 +1,14 @@
-﻿namespace Assecor.Api.Application.DTOs;
+﻿using System.Text.Json.Serialization;
 
-public record PersonDto(int id, string FirstName, string LastName, AddressDto Address, ColorDto Color);
+namespace Assecor.Api.Application.DTOs;
+
+public record PersonDto(
+    int Id,
+    string Name,
+    [property: JsonPropertyName("lastname")]
+    string LastName,
+    [property: JsonPropertyName("zipcode")]
+    string ZipCode,
+    string City,
+    string Color
+);

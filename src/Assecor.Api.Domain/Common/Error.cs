@@ -29,6 +29,11 @@ public static class Errors
     {
         return new Error(Codes.CsvParsingFailed, $"CSV file parsing failed with message: {message}");
     }
+
+    public static Error PersonQueryFailed(string message)
+    {
+        return new Error(Codes.PersonQueryFailed, $"Query failed with message: {message}");
+    }
 }
 
 public static class Codes
@@ -42,4 +47,5 @@ public static class Codes
     public const string AddressIsMissing = nameof(AddressIsMissing);
     public const string ColorIsMissing = nameof(ColorIsMissing);
     public const string PersonNotFound = nameof(PersonNotFound);
+    public const string PersonQueryFailed = nameof(PersonQueryFailed);
 }

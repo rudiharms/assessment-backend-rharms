@@ -5,10 +5,12 @@ using Assecor.Api.Application.Queries;
 using Assecor.Api.Domain.Common;
 using CSharpFunctionalExtensions;
 using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace Assecor.Api.Application.Handlers;
 
-public class GetPersonByIdQueryHandler(IPersonRepository personRepository) : IRequestHandler<GetPersonByIdQuery, Result<PersonDto, Error>>
+public class GetPersonByIdQueryHandler(IPersonRepository personRepository, ILogger<GetPersonByIdQueryHandler> logger)
+    : IRequestHandler<GetPersonByIdQuery, Result<PersonDto, Error>>
 {
     public async Task<Result<PersonDto, Error>> Handle(GetPersonByIdQuery request, CancellationToken cancellationToken)
     {
@@ -16,9 +18,30 @@ public class GetPersonByIdQueryHandler(IPersonRepository personRepository) : IRe
 
         if (personResult.IsFailure)
         {
-            return personResult.Error;
+            logger.LogError(
+                "Failed to get person by Id {PersonId}: {ErrorCode} - {ErrorMessage}",
+                request.Id,
+                personResult.Error.Code,
+                personResult.Error.Message
+            );
+
+            return QueryErrors.PersonNotFound(request.Id);
         }
 
-        return personResult.Value.ToPersonDto();
+        var personDto = personResult.Value.ToPersonDto();
+
+        if (personDto.IsFailure)
+        {
+            logger.LogWarning(
+                "Failed to get person dto by Id {PersonId}: {ErrorCode} - {ErrorMessage}",
+                request.Id,
+                personDto.Error.Code,
+                personDto.Error.Message
+            );
+
+            return QueryErrors.UnknownError(personDto.Error.Message);
+        }
+
+        return personDto;
     }
 }
