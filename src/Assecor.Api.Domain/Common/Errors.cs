@@ -27,9 +27,19 @@ public static class Errors
         return new Error(Codes.CsvParsingFailedCode, $"CSV file parsing failed with message: {message}");
     }
 
-    public static Error PersonQueryFailed(string message)
+    public static Error SqlPersonParsingFailed(string message)
     {
-        return new Error(Codes.PersonQueryFailedCode, $"Query failed with message: {message}");
+        return new Error(Codes.SqlPersonParsingFailed, $"SQL person parsing failed with message: {message}");
+    }
+
+    public static Error PersonEntityParsingFailed(string message)
+    {
+        return new Error(Codes.PersonEntityParsingFailedCode, $"Person entity parsing failed with message: {message}");
+    }
+
+    public static Error PersonDtoFailed(string message)
+    {
+        return new Error(Codes.PersonDtoFailedCode, $"DTO failed with message: {message}");
     }
 
     public static class Codes
@@ -42,6 +52,8 @@ public static class Errors
         public const string CsvParsingFailedCode = nameof(CsvParsingFailedCode);
         public const string AddressIsMissingCode = nameof(AddressIsMissingCode);
         public const string PersonNotFoundCode = nameof(PersonNotFoundCode);
-        public const string PersonQueryFailedCode = nameof(PersonQueryFailedCode);
+        public const string PersonDtoFailedCode = nameof(PersonDtoFailedCode);
+        public const string PersonEntityParsingFailedCode = nameof(PersonEntityParsingFailedCode);
+        public const string SqlPersonParsingFailed = nameof(SqlPersonParsingFailed);
     }
 }

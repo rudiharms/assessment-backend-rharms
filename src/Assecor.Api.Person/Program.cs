@@ -20,7 +20,6 @@ try
             }
         )
         .AddJsonOptions(static options =>
-
             {
                 options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
             }

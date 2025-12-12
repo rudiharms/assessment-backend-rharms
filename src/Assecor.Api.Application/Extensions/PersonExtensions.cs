@@ -13,40 +13,41 @@ public static class PersonExtensions
         try
         {
             return new PersonDto(
-                person.Id, 
-                person.FirstName, 
-                person.LastName, 
+                person.Id,
+                person.FirstName,
+                person.LastName,
                 person.Address.ZipCode,
-                person.Address.City, 
-                person.Color.ColorName.ToString().ToLowerInvariant());
+                person.Address.City,
+                person.Color.ColorName.ToString().ToLowerInvariant()
+            );
         }
         catch (Exception e)
         {
-            return Errors.PersonQueryFailed(e.Message);
+            return Errors.PersonDtoFailed(e.Message);
         }
     }
 
     public static IEnumerable<PersonDto> ToPersonDtos(this IEnumerable<Person> persons, ILogger logger)
     {
-        return persons
-            .Select(person =>
-            {
-                var personDto = person.ToPersonDto();
-
-                if (!personDto.IsFailure)
+        return persons.Select(person =>
                 {
-                    return personDto.Value;
+                    var personDto = person.ToPersonDto();
+
+                    if (!personDto.IsFailure)
+                    {
+                        return personDto.Value;
+                    }
+
+                    logger.LogError(
+                        "Failed to get person dto by id {PersonId}: {ErrorCode} - {ErrorMessage}",
+                        person.Id,
+                        personDto.Error.Code,
+                        personDto.Error.Message
+                    );
+
+                    return null;
                 }
-
-                logger.LogError(
-                    "Failed to get person dto by id {PersonId}: {ErrorCode} - {ErrorMessage}",
-                    person.Id,
-                    personDto.Error.Code,
-                    personDto.Error.Message
-                );
-
-                return null;
-            })
+            )
             .OfType<PersonDto>();
     }
 }

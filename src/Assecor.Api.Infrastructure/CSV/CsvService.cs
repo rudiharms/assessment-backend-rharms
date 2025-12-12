@@ -25,10 +25,10 @@ public class CsvService : ICsvService
     private readonly Lazy<Result<IEnumerable<CsvPerson>, Error>> _lazyData;
     private readonly ILogger<CsvService> _logger;
 
-    public CsvService(IOptionsMonitor<CsvOptions> options, IFileSystem fileSystem, ILogger<CsvService> logger)
+    public CsvService(IOptionsMonitor<CsvOptions> csvOptions, IFileSystem fileSystem, ILogger<CsvService> logger)
     {
-        _filePath = options.CurrentValue.FilePath;
-        _delimiter = options.CurrentValue.Delimiter;
+        _filePath = csvOptions.CurrentValue.FilePath;
+        _delimiter = csvOptions.CurrentValue.Delimiter;
         _fileSystem = fileSystem;
         _logger = logger;
         _lazyData = new Lazy<Result<IEnumerable<CsvPerson>, Error>>(LoadData);

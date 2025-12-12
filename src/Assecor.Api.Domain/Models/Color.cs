@@ -33,9 +33,9 @@ public class Color
         return color ?? Result.Failure<Color, Error>(Errors.InvalidColor);
     }
 
-    public static Result<Color, Error> GetByName(ColorName name)
+    public static Result<Color, Error> GetByName(string name)
     {
-        var color = All.FirstOrDefault(c => c.ColorName == name);
+        var color = All.FirstOrDefault(c => c.ColorName.ToString() == name);
 
         return color ?? Result.Failure<Color, Error>(Errors.InvalidColor);
     }
