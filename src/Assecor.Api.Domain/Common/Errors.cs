@@ -42,6 +42,11 @@ public static class Errors
         return new Error(Codes.PersonDtoFailedCode, $"DTO failed with message: {message}");
     }
 
+    public static Error PersonEntityValidationFailed(string fieldName, int maxLength)
+    {
+        return new Error(Codes.PersonEntityValidationFailedCode, $"Person entity validation failed: {fieldName} exceeds maximum length of {maxLength}");
+    }
+
     public static class Codes
     {
         public const string InvalidAddressZipCodeCode = nameof(InvalidAddressZipCodeCode);
@@ -54,6 +59,7 @@ public static class Errors
         public const string PersonNotFoundCode = nameof(PersonNotFoundCode);
         public const string PersonDtoFailedCode = nameof(PersonDtoFailedCode);
         public const string PersonEntityParsingFailedCode = nameof(PersonEntityParsingFailedCode);
+        public const string PersonEntityValidationFailedCode = nameof(PersonEntityValidationFailedCode);
         public const string SqlPersonParsingFailed = nameof(SqlPersonParsingFailed);
     }
 }

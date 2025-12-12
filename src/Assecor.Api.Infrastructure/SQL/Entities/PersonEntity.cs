@@ -7,12 +7,80 @@ namespace Assecor.Api.Infrastructure.Sql.Entities;
 
 public class PersonEntity
 {
-    public int Id { get; private set; }
-    public required string FirstName { get; set; }
-    public required string LastName { get; set; }
-    public required string ZipCode { get; set; }
-    public required string City { get; set; }
-    public int ColorId { get; set; } = (int) ColorName.None;
+    public const int MaxFirstNameLength = 200;
+    public const int MaxLastNameLength = 200;
+    public const int MaxZipCodeLength = 20;
+    public const int MaxCityLength = 200;
+
+#pragma warning disable CS8618 // Default constructor as required by EF Core
+    private PersonEntity() { }
+#pragma warning restore CS8618
+
+    private PersonEntity(int id, string firstName, string lastName, string zipCode, string city, int colorId)
+    {
+        Id = id;
+        FirstName = firstName;
+        LastName = lastName;
+        ZipCode = zipCode;
+        City = city;
+        ColorId = colorId;
+    }
+
+    public int Id { get; init; }
+    public string FirstName { get; init; }
+    public string LastName { get; init; }
+    public string ZipCode { get; init; }
+    public string City { get; init; }
+    public int ColorId { get; init; } = (int) ColorName.None;
+
+    public static Result<PersonEntity, Error> Create(
+        string firstName,
+        string lastName,
+        string zipCode,
+        string city,
+        int colorId,
+        int id = 0
+    )
+    {
+        firstName = firstName.Trim();
+        lastName = lastName.Trim();
+        zipCode = zipCode.Trim();
+        city = city.Trim();
+
+        if (firstName.Length > MaxFirstNameLength)
+        {
+            return Errors.PersonEntityValidationFailed(nameof(FirstName), MaxFirstNameLength);
+        }
+
+        if (lastName.Length > MaxLastNameLength)
+        {
+            return Errors.PersonEntityValidationFailed(nameof(LastName), MaxLastNameLength);
+        }
+
+        if (zipCode.Length > MaxZipCodeLength)
+        {
+            return Errors.PersonEntityValidationFailed(nameof(ZipCode), MaxZipCodeLength);
+        }
+
+        if (city.Length > MaxCityLength)
+        {
+            return Errors.PersonEntityValidationFailed(nameof(City), MaxCityLength);
+        }
+
+        return new PersonEntity(id, firstName, lastName, zipCode, city, colorId);
+    }
+
+    public static Result<PersonEntity, Error> FromPerson(Person person)
+    {
+        return Create(
+            person.FirstName,
+            person.LastName,
+            person.Address.ZipCode,
+            person.Address.City,
+            (int) person.Color.ColorName,
+            person.Id
+        );
+    }
 
     public Result<Person, Error> ToPerson()
     {

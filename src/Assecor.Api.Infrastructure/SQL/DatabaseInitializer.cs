@@ -35,81 +35,36 @@ public class DatabaseInitializer(PersonDbContext context, ILogger<DatabaseInitia
         {
             logger.LogInformation("Seeding database with initial data...");
 
-            var persons = new[]
+            var personResults = new[]
             {
-                new PersonEntity
-                {
-                    FirstName = "Hans",
-                    LastName = "Müller",
-                    ZipCode = "67742",
-                    City = "Lauterecken",
-                    ColorId = 1
-                },
-                new PersonEntity
-                {
-                    FirstName = "Peter",
-                    LastName = "Petersen",
-                    ZipCode = "18439",
-                    City = "Stralsund",
-                    ColorId = 2
-                },
-                new PersonEntity
-                {
-                    FirstName = "Johnny",
-                    LastName = "Johnson",
-                    ZipCode = "88888",
-                    City = "madeup",
-                    ColorId = 3
-                },
-                new PersonEntity
-                {
-                    FirstName = "Milly",
-                    LastName = "Millenium",
-                    ZipCode = "77777",
-                    City = "madeuptoo",
-                    ColorId = 4
-                },
-                new PersonEntity
-                {
-                    FirstName = "Jonas",
-                    LastName = "Müller",
-                    ZipCode = "32323",
-                    City = "Hansstadt",
-                    ColorId = 5
-                },
-                new PersonEntity
-                {
-                    FirstName = "Tastatur",
-                    LastName = "Fujitsu",
-                    ZipCode = "42342",
-                    City = "Japan",
-                    ColorId = 6
-                },
-                new PersonEntity
-                {
-                    FirstName = "Anders",
-                    LastName = "Andersson",
-                    ZipCode = "32132",
-                    City = "Schweden",
-                    ColorId = 2
-                },
-                new PersonEntity
-                {
-                    FirstName = "Gerda",
-                    LastName = "Gerber",
-                    ZipCode = "76535",
-                    City = "Woanders",
-                    ColorId = 3
-                },
-                new PersonEntity
-                {
-                    FirstName = "Klaus",
-                    LastName = "Klaussen",
-                    ZipCode = "43246",
-                    City = "Hierach",
-                    ColorId = 2
-                }
+                PersonEntity.Create("Hans", "Müller", "67742", "Lauterecken", 1),
+                PersonEntity.Create("Peter", "Petersen", "18439", "Stralsund", 2),
+                PersonEntity.Create("Johnny", "Johnson", "88888", "madeup", 3),
+                PersonEntity.Create("Milly", "Millenium", "77777", "madeuptoo", 4),
+                PersonEntity.Create("Jonas", "Müller", "32323", "Hansstadt", 5),
+                PersonEntity.Create("Tastatur", "Fujitsu", "42342", "Japan", 6),
+                PersonEntity.Create("Anders", "Andersson", "32132", "Schweden", 2),
+                PersonEntity.Create("Gerda", "Gerber", "76535", "Woanders", 3),
+                PersonEntity.Create("Klaus", "Klaussen", "43246", "Hierach", 2)
             };
+
+            var persons = new List<PersonEntity>();
+
+            foreach (var personResult in personResults)
+            {
+                if (personResult.IsFailure)
+                {
+                    logger.LogError(
+                        "Failed to create person entity for seeding: {ErrorCode} - {ErrorMessage}",
+                        personResult.Error.Code,
+                        personResult.Error.Message
+                    );
+
+                    continue;
+                }
+
+                persons.Add(personResult.Value);
+            }
 
             await context.Persons.AddRangeAsync(persons);
             await context.SaveChangesAsync();
