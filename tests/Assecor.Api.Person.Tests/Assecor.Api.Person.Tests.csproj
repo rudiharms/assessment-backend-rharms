@@ -4,10 +4,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Using Include="Xunit" />
+    <ProjectReference Include="..\..\src\Assecor.Api.Person\Assecor.Api.Person.csproj" />
+    <ProjectReference Include="..\..\src\Assecor.Api.Application\Assecor.Api.Application.csproj" />
+    <ProjectReference Include="..\..\src\Assecor.Api.Domain\Assecor.Api.Domain.csproj" />
   </ItemGroup>
 
 </Project>

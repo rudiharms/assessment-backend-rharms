@@ -13,7 +13,7 @@ public class Color
     private static readonly Color _yellow = new(ColorName.Gelb);
     private static readonly Color _turquoise = new(ColorName.Türkis);
     private static readonly Color _white = new(ColorName.Weiß);
-    public static readonly Color None = new(ColorName.None);
+    private static readonly Color _none = new(ColorName.None);
 
     private Color(ColorName colorName)
     {
@@ -21,7 +21,7 @@ public class Color
         Id = (int) colorName;
     }
 
-    private static IReadOnlyList<Color> All { get; } = new[] { _blue, _green, _violet, _red, _yellow, _turquoise, _white, None };
+    private static IReadOnlyList<Color> All { get; } = new[] { _blue, _green, _violet, _red, _yellow, _turquoise, _white, _none };
 
     public int Id { get; }
     public ColorName ColorName { get; }

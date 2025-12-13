@@ -2,6 +2,7 @@
 using System.IO.Abstractions;
 using System.Text;
 using Assecor.Api.Domain.Common;
+using Assecor.Api.Domain.Enums;
 using Assecor.Api.Infrastructure.Abstractions;
 using Assecor.Api.Infrastructure.Options;
 using CSharpFunctionalExtensions;
@@ -87,7 +88,7 @@ public class CsvService : ICsvService
                 var lastName = csv.TryGetField<string>(0, out var lastNameValue) ? lastNameValue : null;
                 var firstName = csv.TryGetField<string>(1, out var firstNameValue) ? firstNameValue : null;
                 var address = csv.TryGetField<string>(2, out var addressValue) ? addressValue : null;
-                var colorId = csv.TryGetField<int>(3, out var colorIdValue) ? colorIdValue : (int?) null;
+                var colorId = csv.TryGetField<int>(3, out var colorIdValue) ? colorIdValue : (int) ColorName.None;
 
                 var recordResult = CsvPerson.Create(lastName, firstName, address, colorId);
 
