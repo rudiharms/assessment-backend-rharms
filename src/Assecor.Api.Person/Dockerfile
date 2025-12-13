@@ -1,5 +1,3 @@
-
-
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
 USER $APP_UID
 WORKDIR /app
@@ -32,4 +30,6 @@ RUN dotnet publish "Assecor.Api.Person.csproj" -c $BUILD_CONFIGURATION -o /app/p
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+COPY --from=build /src/src/Assecor.Api.Infrastructure/Csv ../Assecor.Api.Infrastructure/Csv
+COPY --from=build /src/src/Assecor.Api.Infrastructure/Sql ../Assecor.Api.Infrastructure/Sql
 ENTRYPOINT ["dotnet", "Assecor.Api.Person.dll"]

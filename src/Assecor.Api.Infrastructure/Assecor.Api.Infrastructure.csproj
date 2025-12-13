@@ -16,4 +16,19 @@
     <ProjectReference Include="..\Assecor.Api.Application\Assecor.Api.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Csv\sample-input.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Sql\persons.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Sql\persons.db-shm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Sql\persons.db-wal">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
