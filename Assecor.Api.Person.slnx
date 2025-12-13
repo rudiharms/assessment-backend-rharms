@@ -25,6 +25,9 @@
   </Folder>
   <Folder Name="/tests/">
     <File Path="tests/Directory.Build.props" />
-    <Project Path="tests/Assecor.Api.Person/Assecor.Api.Person.csproj" Id="69158111-0605-4e7d-ae3c-2c95f323d0f9" />
+    <Project Path="tests/Assecor.Api.Application.Tests/Assecor.Api.Application.Tests.csproj" Id="edb90d61-527a-4534-9486-b2c5b8619239" />
+    <Project Path="tests/Assecor.Api.Domain.Tests/Assecor.Api.Domain.Tests.csproj" Id="500908dd-1e20-47dd-9a98-da8178797eae" />
+    <Project Path="tests/Assecor.Api.Infrastructure.Tests/Assecor.Api.Infrastructure.Tests.csproj" Id="1e11b6c7-a18b-4db7-9001-12c4797662db" />
+    <Project Path="tests/Assecor.Api.Person.Tests/Assecor.Api.Person.Tests.csproj" Id="69158111-0605-4e7d-ae3c-2c95f323d0f9" />
   </Folder>
 </Solution>

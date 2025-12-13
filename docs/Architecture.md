@@ -3,7 +3,7 @@
 ## Frameworks, Patterns and Concepts implemented
 ASP.Net Core Framework
 
-Some Doman Driven Design principles
+Some Domain Driven Design principles
 
 CQRS pattern
 
@@ -21,7 +21,7 @@ SOLID principles
 
 Docker support
 
-Swagger support on dev environemnt
+Swagger support on dev environment
 
 EF Framework
 
@@ -31,9 +31,9 @@ Mediator pattern
 
 Immutable value objects
 
-IdEmpotency
+Idempotency
 
-## Backlog
+## Backlog(TODO)
 Authorization and authentication
 
 Deploy pipeline

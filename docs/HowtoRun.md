@@ -6,7 +6,7 @@ This document describes various ways to run and test the Assecor Person API.
 
 - .NET 10 SDK
 - Docker (optional, for containerized deployment)
-- Visual Studio 2022 or later (optional)
+- Visual Studio 2026 or later
 
 ## Running the Application
 
