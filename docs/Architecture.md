@@ -36,12 +36,14 @@ Idempotency
 ## Backlog(TODO)
 Authorization and authentication
 
-Deploy pipeline
+Deployment pipeline
 
 More logging including metrics
 
 Cleaner normalized Relational Data Setup
 
 Avoid firstname lastname duplication in database and csv during creation
+
+Integration tests with test containers
 
 

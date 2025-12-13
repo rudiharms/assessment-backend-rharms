@@ -292,3 +292,11 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 
+tests/Assecor.Api.Application.Tests/coverage.json
+tests/Assecor.Api.Infrastructure.Tests/coverage.json
+tests/Assecor.Api.Application.Tests/coverage.cobertura.xml
+tests/Assecor.Api.Domain.Tests/coverage.cobertura.xml
+tests/Assecor.Api.Infrastructure.Tests/coverage.cobertura.xml
+tests/Assecor.Api.Person.Tests/coverage.cobertura.xml
+tests/Assecor.Api.Person.Tests/coverage.json
+tests/Assecor.Api.Domain.Tests/coverage.json

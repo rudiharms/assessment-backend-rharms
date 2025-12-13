@@ -4,6 +4,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" />
+    <PackageReference Include="System.IO.Abstractions.TestingHelpers" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Assecor.Api.Infrastructure\Assecor.Api.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

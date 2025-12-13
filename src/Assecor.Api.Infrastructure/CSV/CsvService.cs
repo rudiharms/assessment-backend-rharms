@@ -73,9 +73,14 @@ public class CsvService : ICsvService
 
             using var stream = _fileSystem.File.OpenRead(_filePath);
 
-            if (!stream.CanRead || stream.Length == 0)
+            if (!stream.CanRead)
             {
-                return Errors.CsvLoadingFailed("File is not readable or empty");
+                return Errors.CsvLoadingFailed("File is not readable");
+            }
+
+            if (stream.Length == 0)
+            {
+                return Enumerable.Empty<CsvPerson>().ToList();
             }
 
             using var reader = new StreamReader(stream);
