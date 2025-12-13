@@ -11,4 +11,5 @@ public interface IPersonRepository
     Task<Result<Person, Error>> GetPersonByIdAsync(int id);
     Task<Result<IEnumerable<Person>, Error>> GetPersonsByColorAsync(ColorName colorName);
     Task<Result<IEnumerable<Person>, Error>> GetPersonsByColorAsync(int colorId);
+    Task<Result<Person, Error>> AddPersonAsync(Person person);
 }

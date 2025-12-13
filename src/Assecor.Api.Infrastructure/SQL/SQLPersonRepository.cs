@@ -2,6 +2,7 @@
 using Assecor.Api.Domain.Common;
 using Assecor.Api.Domain.Enums;
 using Assecor.Api.Domain.Models;
+using Assecor.Api.Infrastructure.Sql.Entities;
 using CSharpFunctionalExtensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -90,6 +91,49 @@ public class SqlPersonRepository(PersonDbContext dbContext, ILogger<SqlPersonRep
             logger.LogError(ex, "Error occurred while fetching persons by color");
 
             return Errors.SqlPersonParsingFailed(ex.Message);
+        }
+    }
+
+    public async Task<Result<Person, Error>> AddPersonAsync(Person person)
+    {
+        try
+        {
+            var personEntityResult = PersonEntity.FromPerson(person);
+
+            if (personEntityResult.IsFailure)
+            {
+                logger.LogError(
+                    "Failed to create person entity: {ErrorCode} - {ErrorMessage}",
+                    personEntityResult.Error.Code,
+                    personEntityResult.Error.Message
+                );
+
+                return personEntityResult.Error;
+            }
+
+            await dbContext.Persons.AddAsync(personEntityResult.Value);
+            await dbContext.SaveChangesAsync();
+
+            var addedPerson = personEntityResult.Value.ToPerson();
+
+            if (addedPerson.IsFailure)
+            {
+                logger.LogError(
+                    "Failed to convert added entity back to person: {ErrorCode} - {ErrorMessage}",
+                    addedPerson.Error.Code,
+                    addedPerson.Error.Message
+                );
+
+                return Errors.SqlPersonCreationToPersonFailed(addedPerson.Error.Message);
+            }
+
+            return addedPerson.Value;
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Error occurred while adding person");
+
+            return Errors.SqlPersonCreationFailed(ex.Message);
         }
     }
 }

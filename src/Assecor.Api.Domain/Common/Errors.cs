@@ -12,7 +12,7 @@ public static class Errors
         return new Error(Codes.PersonNotFoundCode, $"Person could not be found: {message}");
     }
 
-    public static Error FileNotFound(string filePath)
+    public static Error CsvFileNotFound(string filePath)
     {
         return new Error(Codes.FileNotFoundCode, $"CSV file not found at path: {filePath}");
     }
@@ -27,9 +27,29 @@ public static class Errors
         return new Error(Codes.CsvParsingFailedCode, $"CSV file parsing failed with message: {message}");
     }
 
+    public static Error CsvPersonCreationFailed(string message)
+    {
+        return new Error(Codes.CsvPersonCreationFailedCode, $"CSV person creation failed with message: {message}");
+    }
+
+    public static Error CsvPersonAddingFailed(string message)
+    {
+        return new Error(Codes.CsvPersonAddingFailedCode, $"CSV person adding failed with message: {message}");
+    }
+
     public static Error SqlPersonParsingFailed(string message)
     {
         return new Error(Codes.SqlPersonParsingFailedCode, $"SQL person parsing failed with message: {message}");
+    }
+
+    public static Error SqlPersonCreationToPersonFailed(string message)
+    {
+        return new Error(Codes.SqlToPersonCreationFailedCode, $"SQL person entity failed parsing to model Person with message: {message}");
+    }
+
+    public static Error SqlPersonCreationFailed(string message)
+    {
+        return new Error(Codes.SqlPersonCreationFailedCode, $"SQL person creation failed with message: {message}");
     }
 
     public static Error PersonEntityParsingFailed(string message)
@@ -70,5 +90,9 @@ public static class Errors
         public const string PersonEntityValidationFailedCode = nameof(PersonEntityValidationFailedCode);
         public const string PersonValidationFailedCode = nameof(PersonValidationFailedCode);
         public const string SqlPersonParsingFailedCode = nameof(SqlPersonParsingFailedCode);
+        public const string SqlToPersonCreationFailedCode = nameof(SqlToPersonCreationFailedCode);
+        public const string SqlPersonCreationFailedCode = nameof(SqlPersonCreationFailedCode);
+        public const string CsvPersonAddingFailedCode = nameof(CsvPersonAddingFailedCode);
+        public const string CsvPersonCreationFailedCode = nameof(CsvPersonCreationFailedCode);
     }
 }

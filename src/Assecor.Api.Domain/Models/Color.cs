@@ -35,7 +35,7 @@ public class Color
 
     public static Result<Color, Error> GetByName(string name)
     {
-        var color = All.FirstOrDefault(c => c.ColorName.ToString() == name);
+        var color = All.FirstOrDefault(c => c.ColorName.ToString().Equals(name, StringComparison.OrdinalIgnoreCase));
 
         return color ?? Result.Failure<Color, Error>(Errors.InvalidColor);
     }

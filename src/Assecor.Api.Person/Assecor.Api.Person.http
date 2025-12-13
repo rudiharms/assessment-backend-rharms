@@ -13,8 +13,22 @@ Accept: application/json
 ###
 
 ### Get persons by color
-GET {{Assecor.Api.Person_HostAddress}}/persons/color/blau
+GET {{Assecor.Api.Person_HostAddress}}/persons/color/Blau
 Accept: application/json
+
+###
+
+### Create a new person
+POST {{Assecor.Api.Person_HostAddress}}/persons
+Content-Type: application/json
+
+{
+  "name": "Max",
+  "lastname": "Mustermann",
+  "zipcode": "12345",
+  "city": "Berlin",
+  "color": "Blau"
+}
 
 ###
 

@@ -1,4 +1,5 @@
-﻿using Assecor.Api.Application.Queries;
+﻿using Assecor.Api.Application.Commands;
+using Assecor.Api.Application.Queries;
 using Assecor.Api.Domain.Common;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,6 +15,12 @@ public static class ErrorExtensions
             QueryErrors.Codes.ColorQueryFailedCode => CreateError(error, "Color Query failed", StatusCodes.Status500InternalServerError),
             QueryErrors.Codes.UnknownErrorCode => CreateError(error, "Unknown error", StatusCodes.Status500InternalServerError),
             QueryErrors.Codes.InvalidColorCode => CreateError(error, "Invalid color", StatusCodes.Status400BadRequest),
+            CommandErrors.Codes.CreatePersonFailedCode => CreateError(error, "Failed to create person", StatusCodes.Status400BadRequest),
+            CommandErrors.Codes.CreatePersonFailedInternalCode => CreateError(
+                error,
+                "Failed to create person",
+                StatusCodes.Status500InternalServerError
+            ),
 
             QueryErrors.Codes.PersonsQueryFailedCode => CreateError(
                 error,

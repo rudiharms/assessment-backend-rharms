@@ -3,6 +3,8 @@
 ## Frameworks, Patterns and Concepts implemented
 ASP.Net Core Framework
 
+Some Doman Driven Design principles
+
 CQRS pattern
 
 Repository pattern
@@ -39,5 +41,7 @@ Deploy pipeline
 More logging including metrics
 
 Cleaner normalized Relational Data Setup
+
+Avoid firstname lastname duplication in database and csv during creation
 
 
