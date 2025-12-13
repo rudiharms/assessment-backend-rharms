@@ -4,6 +4,8 @@ using CSharpFunctionalExtensions;
 
 namespace Assecor.Api.Domain.Models;
 
+//Note to Reviewer:This could be replaced with enum and extensions methods. This ended up being just a type of wrapper to the color enum, which can achieve the same thing.
+//As such it's somewhat overengineered for now.
 public class Color
 {
     private static readonly Color _blue = new(ColorName.Blau);

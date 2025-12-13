@@ -4,6 +4,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Assecor.Api.Application\Assecor.Api.Application.csproj" />
+    <ProjectReference Include="..\..\src\Assecor.Api.Domain\Assecor.Api.Domain.csproj" />
   </ItemGroup>
 
 </Project>
