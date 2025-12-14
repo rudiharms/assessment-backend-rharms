@@ -9,7 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace Assecor.Api.Person.Controllers;
 
 [ApiController]
-[Route("/[controller]")]
+//not using default controller name because requirements specified lowercase route
+[Route("/persons")]
 public class PersonsController(ISender sender) : BaseController
 {
     [HttpPost]

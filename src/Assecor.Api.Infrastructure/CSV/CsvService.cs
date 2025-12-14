@@ -83,7 +83,7 @@ public class CsvService : ICsvService
                 return Enumerable.Empty<CsvPerson>().ToList();
             }
 
-            using var reader = new StreamReader(stream);
+            using var reader = new StreamReader(stream, Encoding.UTF8);
             using var csv = new CsvReader(reader, config);
 
             var records = new List<CsvPerson>();
@@ -141,7 +141,7 @@ public class CsvService : ICsvService
                 await EnsureStreamEndsWithNewLineAsync(stream);
             }
 
-            await using var writer = new StreamWriter(stream, leaveOpen: false);
+            await using var writer = new StreamWriter(stream, Encoding.UTF8, leaveOpen: false);
             await using var csv = new CsvWriter(writer, config);
 
             csv.WriteField(person.LastName);
