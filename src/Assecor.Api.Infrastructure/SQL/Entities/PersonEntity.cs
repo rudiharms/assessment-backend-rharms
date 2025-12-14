@@ -13,7 +13,9 @@ public class PersonEntity
     private const int MaxCityLength = 200;
 
 #pragma warning disable CS8618 // Default constructor as required by EF Core
+#pragma warning disable IDE0051
     private PersonEntity() { }
+#pragma warning restore IDE0051
 #pragma warning restore CS8618
 
     private PersonEntity(int id, string firstName, string lastName, string zipCode, string city, int colorId)

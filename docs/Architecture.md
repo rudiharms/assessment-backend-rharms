@@ -1,5 +1,9 @@
 # Architecture
 
+- .NET 10 SDK
+- Docker (optional, for containerized deployment)
+- Visual Studio 2026 or later (optional , for development)
+
 ## Frameworks, Patterns and Concepts implemented
 ASP.Net Core Framework
 
